@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 //use Carbon\Carbon;
 use Auth;
 use Log;
+use Storage;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\Task;
@@ -62,10 +63,14 @@ class TaskController extends Controller
 		{
 			Log::info("Task with file no. ".$task->fileno." has attachment : ".$request->hasFile('attachment'));
 			if ($request->hasFile('attachment')) {
-				$dest_path = base_path().'/storage/uploads';
-				$dest_name = $task->id.'.'.$request->file('attachment')->guessExtension();
-				Log::info("Moving attachment to ".$dest_path."/".$dest_name);
-				$request->file('attachment')->move($dest_path, $dest_name );
+				//$dest_path = base_path().'/storage/uploads';
+				//$dest_name = $task->id.'.'.$request->file('attachment')->guessExtension();
+				//Log::info("Moving attachment to ".$dest_path."/".$dest_name);
+				//$request->file('attachment')->move($dest_path, $dest_name );
+				Storage::put(
+					'uploads/tasks/'.$task->id.'.'.$request->file('attachment')->guessExtension(),
+					file_get_contents($request->file('attachment')->getRealPath())
+				);
 			}
 		}
 		 return redirect('/');

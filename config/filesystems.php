@@ -56,10 +56,10 @@ return [
 
         's3' => [
             'driver' => 's3',
-            'key' => 'your-key',
-            'secret' => 'your-secret',
-            'region' => 'your-region',
-            'bucket' => 'your-bucket',
+            'key' => 'AKIAJXCS676ZK7O53SCA',
+            'secret' => '2f/3JvFGlzVFvouNHH4Gy7Fm/rhQ6Awmkexozu0z',
+            'region' => 'us-west-2',
+            'bucket' => 'digioffice',
         ],
 
     ],
